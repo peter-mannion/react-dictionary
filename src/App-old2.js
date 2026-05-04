@@ -1,6 +1,7 @@
-// Move CardList to CardsContainer.jsx component
+// Add a WordForm and CardsContainer as components
 
 import "./App.css";
+import WordCard from "./components/WordCard/WordCard";
 import React from "react";
 import WordForm from "./components/WordForm/WordForm";
 import CardsContainer from "./components/CardsContainer/CardsContainer";
@@ -14,12 +15,21 @@ function App() {
     { front: "square", back: "Platz" },
   ]);
 
+  const cardList = words.map((word) => (
+    // This is an array of JSX elements
+    <WordCard
+      front={word.front}
+      back={word.back}
+      key={`${word.front}`} // in case cards are added or deleted, make key unqique using just word.front since word.front and word.back are the same element
+    />
+  ));
+
   return (
     <div className="App">
       <header className="App-header">Dictionary App</header>
       <main className="cards-container">
         <WordForm />
-        <CardsContainer words={words} />
+        <CardsContainer cardList={cardList} />
       </main>
     </div>
   );

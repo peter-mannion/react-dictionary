@@ -1,9 +1,6 @@
-// Move CardList to CardsContainer.jsx component
-
 import "./App.css";
+import WordCard from "./components/WordCard/WordCard";
 import React from "react";
-import WordForm from "./components/WordForm/WordForm";
-import CardsContainer from "./components/CardsContainer/CardsContainer";
 
 function App() {
   const [words, setWords] = React.useState([
@@ -12,14 +9,19 @@ function App() {
     { front: "taxi", back: "Taxi" },
     { front: "paper", back: "Papier" },
     { front: "square", back: "Platz" },
+    { front: "seven", back: "sieben" },
   ]);
 
   return (
     <div className="App">
       <header className="App-header">Dictionary App</header>
       <main className="cards-container">
-        <WordForm />
-        <CardsContainer words={words} />
+        <WordCard front={words[0].front} back={words[0].back} />
+        <WordCard front={words[1].front} back={words[1].back} />
+        <WordCard front={words[2].front} back={words[2].back} />
+        <WordCard front={words[3].front} back={words[3].back} />
+        <WordCard front={words[4].front} back={words[4].back} />
+        <WordCard front={words[5].front} back={words[5].back} />
       </main>
     </div>
   );

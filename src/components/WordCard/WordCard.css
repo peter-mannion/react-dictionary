@@ -1,0 +1,16 @@
+.word-card {
+  border-radius: 5px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+  margin: 20px;
+  padding: 10px;
+  background-color: lightgoldenrodyellow;
+  display: inline-block;
+  width: 250px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
