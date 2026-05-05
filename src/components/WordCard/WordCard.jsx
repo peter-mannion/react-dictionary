@@ -1,9 +1,9 @@
-// Add onClick event handler
+// Addind and deleting a card to/from a list of cards
 
 import React from "react";
 import "./WordCard.css";
 
-export default function WordCard({ front, back }) {
+export default function WordCard({ front, back, deleteWord }) {
   const [isFront, setFront] = React.useState(true); // set initial card state
 
   const cardContent = isFront ? (
@@ -12,14 +12,23 @@ export default function WordCard({ front, back }) {
     <div className="card-back">German: {back}</div>
   );
 
-  // arrow function
-  const handleClick = () => {
-    // Event.preventDefault(); // in case of form fields, this fucntion prevents form submission prior to user completing the form
+  // arrow function for flipping cards
+  const handleFlip = (e) => {
+    e.preventDefault(); // in case of form fields, this function prevents form submission prior to user completing the form
     setFront(!isFront);
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    deleteWord(front);
+  };
+
   return (
-    <div className="word-card" onClick={handleClick}>
+    <div className="word-card" onClick={handleFlip}>
+      <span className="delete-card" onClick={handleDelete}>
+        X
+      </span>
       {cardContent}
     </div>
   );

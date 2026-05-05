@@ -1,10 +1,9 @@
-// Use Refs for from ionput instead of document.querySlector
-// Use useRef instead of useState
+// Addind and deleting a card to/from a list of cards
 
 import React, { useRef } from "react";
 import "./WordForm.css";
 
-const WordForm = () => {
+const WordForm = ({ addWord }) => {
   const enRef = useRef(null);
   const deRef = useRef(null);
 
@@ -23,7 +22,7 @@ const WordForm = () => {
     enField.value = "";
     deField.value = "";
 
-    alert(`${enValue} - ${deValue}`);
+    addWord(enValue, deValue);
   };
 
   return (

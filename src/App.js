@@ -1,4 +1,4 @@
-// Move CardList to CardsContainer.jsx component
+// Addind and deleting a card to/from a list of cards
 
 import "./App.css";
 import React from "react";
@@ -14,12 +14,22 @@ function App() {
     { front: "square", back: "Platz" },
   ]);
 
+  const addWord = (front, back) => {
+    const newWords = [...words, { front, back }];
+    setWords(newWords);
+  };
+
+  const deleteWord = (front) => {
+    const newWords = words.filter((word) => word.front !== front);
+    setWords(newWords);
+  };
+
   return (
     <div className="App">
       <header className="App-header">Dictionary App</header>
       <main className="cards-container">
-        <WordForm />
-        <CardsContainer words={words} />
+        <WordForm addWord={addWord} />
+        <CardsContainer words={words} deleteWord={deleteWord} />
       </main>
     </div>
   );
