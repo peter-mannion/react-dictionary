@@ -1,18 +1,24 @@
-// Addind and deleting a card to/from a list of cards
+// Adding and deleting a card to/from a list of cards
+// Add useEffect to load words.json file
 
 import "./App.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import WordForm from "./components/WordForm/WordForm";
 import CardsContainer from "./components/CardsContainer/CardsContainer";
 
 function App() {
-  const [words, setWords] = React.useState([
-    { front: "translation", back: "ubersetzung" },
-    { front: "egg", back: "Ei" },
-    { front: "taxi", back: "Taxi" },
-    { front: "paper", back: "Papier" },
-    { front: "square", back: "Platz" },
-  ]);
+  const [words, setWords] = useState([]);
+
+  useEffect(
+    () => {
+      fetch("/constants/words.json")
+        .then((x) => x.json())
+        .then((data) => setWords(data));
+
+      console.log("App useEffect");
+    },
+    [], // Second argument of UseEffect(). This is a dependency array and in this case the empty array only executes once when "words.json" loads.
+  );
 
   const addWord = (front, back) => {
     const newWords = [...words, { front, back }];
