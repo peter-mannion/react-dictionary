@@ -7,17 +7,14 @@ import WordForm from "./components/WordForm/WordForm";
 import CardsContainer from "./components/CardsContainer/CardsContainer";
 
 function App() {
-  const [words, setWords] = useState([
-    { front: "translation", back: "ubersetzung" },
-    { front: "egg", back: "Ei" },
-    { front: "taxi", back: "Taxi" },
-    { front: "paper", back: "Papier" },
-    { front: "square", back: "Platz" },
-    { front: "duck", back: "Ente" },
-  ]);
+  const [words, setWords] = useState([]);
 
   useEffect(
     () => {
+      fetch("/constants/words.json")
+        .then((x) => x.json())
+        .then((data) => setWords(data));
+
       console.log("App useEffect");
     },
     [], // Second argument of UseEffect(). This is a dependency array and in this case the empty array only executes once when "words.json" loads.
